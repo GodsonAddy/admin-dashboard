@@ -1,10 +1,11 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import ListItems from './ListItems';
-import { Hidden, Drawer, IconButton, Divider} from '@material-ui/core';
+import React, { useContext } from 'react';
+import { makeStyles} from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { Divider, Drawer} from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { DrawerContext } from './context/drawer.context';
+import DrawerItems from './ListItems';
 
 const drawerWidth = 240;
 
@@ -14,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
     whiteSpace: 'nowrap',
   },
+
+
   drawerOpen: {
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -21,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+
+
   drawerClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -32,61 +37,42 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9) + 1,
     },
   },
+
+
   toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-
 }));
 
-export default function ListDrawer() {
+export default function SideDrawer() {
   const classes = useStyles();
-  const theme = useTheme();
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const {open, setOpen} = useContext(DrawerContext)
 
   return (
-    <div>
-        <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        
-          <Drawer
-           variant="permanent"
+    <Drawer
+        variant='permanent'
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.drawerClose]: !open
         })}
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          }),
+          })
         }}
-          >
-          <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+      >
+        <div className={classes.toolbar}>
+          <IconButton onClick={() => setOpen(prev => !prev)}>
+            <ChevronLeftIcon />
           </IconButton>
-        </div>
+         </div> 
         <Divider />
-            <ListItems />
-          </Drawer>
-          
-        
-        
-      </nav>
-    </div>
+        <DrawerItems />
+      </Drawer>
   );
 }

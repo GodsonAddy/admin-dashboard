@@ -32,61 +32,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ListItems() {
+export default function DrawerItems() {
   const classes = useStyles();
-  const [expand, setExpand] = React.useState(true);
-  
-  const handleClick = () => {
-    setExpand(!expand);
-  };
 
   return (
-    <div >
-      
-        <List
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-            <ListSubheader component="div" id="nested-list-subheader" className={classes.header}>
-            <img alt="logo" src={logo} className={classes.logo}></img>
-            vodafone
-            </ListSubheader>
-        }
-        className={classes.root}
-        >
-        <Divider />
+    <div>
+      <List>
         <ListItem button>
-            <ListItemIcon>
-            <SendIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sent mail" />
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary='Inbox' />
         </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-            <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-        </ListItem>
-        <ListItem button onClick={handleClick}>
-            <ListItemIcon>
-            <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-            {expand ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={expand} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                <StarBorder />
-                </ListItemIcon>
-                <ListItemText primary="Starred" />
-            </ListItem>
-            </List>
-        </Collapse>
-        <Divider />
-        </List>
-        
+      </List>
     </div>
   );
 }

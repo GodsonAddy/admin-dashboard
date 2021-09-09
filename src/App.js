@@ -1,12 +1,7 @@
 import AllBar from './allbar';
-import './App.css';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <AllBar />
-    </div>
+    <AllBar />
   );
 }
-
-export default App;

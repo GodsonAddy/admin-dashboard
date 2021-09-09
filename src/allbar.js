@@ -1,25 +1,29 @@
 import React from "react";
 import NavBar from "./navbar";
-import ListDrawer from "./drawer";
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
+import DrawerContextProvider from './context/drawer.context';
+import Red from '@material-ui/core/colors/red'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      fontFamily: 'Poppins'
-    },
-}))
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Poppins',
+    ].join(',')
+  },
+  palette: {
+    primary: {
+      main: '#D93B30'
+    }
+  }
+})
 
-const AllBar = () => {
-  const classes = useStyles();
-
+export default function AllBar() {
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <ListDrawer />
-            <NavBar />
-        </div>
-    )
+      <DrawerContextProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NavBar />
+      </ThemeProvider>
+    </DrawerContextProvider>
+  )
 }
-export default AllBar;
