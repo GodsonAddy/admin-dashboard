@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import clsx from 'clsx';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,6 +12,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { DrawerContext } from './context/drawer-context';
+
 
 const drawerWidth = 240;
 
@@ -107,11 +109,7 @@ export default function NavBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  const {open, setOpen} = useContext(DrawerContext);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -146,6 +144,7 @@ export default function NavBar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   );
 
@@ -176,23 +175,22 @@ export default function NavBar() {
 
   return (
     <div>
-      <AppBar position="fixed" className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}>
+      <AppBar 
+        position="fixed" 
+        className={clsx(classes.appBar, {[classes.appBarShift]: open,})}
+      >
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
+            color='inherit'
+            aria-label='open drawer'
+            onClick={() => setOpen(prev => !prev)}
+            className={clsx(classes.menuButton, {[classes.hide]: open})}
+            
           >
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Admin-Dashboard
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

@@ -1,10 +1,10 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import ListItems from './ListItems';
-import { Hidden, Drawer, IconButton, Divider} from '@material-ui/core';
+import React, {useContext} from 'react';
+import { makeStyles} from '@material-ui/core/styles';
+import { Drawer, IconButton, Divider} from '@material-ui/core';
 import clsx from 'clsx';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import SideBarMenu from './side-bar-menu';
+import { DrawerContext } from './context/drawer-context';
 
 const drawerWidth = 240;
 
@@ -47,45 +47,39 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function ListDrawer() {
+export default function SideBar() {
   const classes = useStyles();
-  const theme = useTheme();
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const {open, setOpen} = useContext(DrawerContext);
 
   return (
     <div>
         <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         
           <Drawer
-           variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
+            variant="permanent"
+            className={clsx(classes.drawer, {
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            })}
+            classes={{
+              paper: clsx({
+                [classes.drawerOpen]: open,
+                [classes.drawerClose]: !open,
+              }),
+            }}
           >
-          <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-            <ListItems />
-          </Drawer>
           
-        
-        
+          <div className={classes.toolbar}>
+            <IconButton onClick={() => setOpen(prev => !prev)}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div> 
+
+          <Divider />
+          <SideBarMenu />
+
+        </Drawer>
+         
       </nav>
     </div>
   );
