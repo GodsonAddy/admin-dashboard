@@ -4,11 +4,27 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from 'react-router-dom';
+import { unstable_createMuiStrictModeTheme as createTheme } from '@material-ui/core';
+import {ThemeProvider} from '@material-ui/core';
 
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Poppins',
+    ].join(',')
+  },
+  palette: {
+    primary: {
+      main: '#D93B30'
+    }
+  }
+})
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

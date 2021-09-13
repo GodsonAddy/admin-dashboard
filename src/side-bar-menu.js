@@ -69,74 +69,73 @@ export default function SideBarMenu() {
             </ListSubheader>
           }
           className={classes.root}
-
         >
           <Divider className={classes.nested} />
           <div>
-            <ListItem button>
-      
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <NavLink to='/Inbox'>
+
+            <NavLink to='/Inbox'>
+              <ListItem button>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
                 <ListItemText primary="Inbox" />
-              </NavLink>
-            </ListItem>
+              </ListItem>
+            </NavLink>
 
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <SendIcon />
-              </ListItemIcon>
-              <NavLink to='/sentmail'>
+            <NavLink to='/sentmail'>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <SendIcon />
+                </ListItemIcon>
                 <ListItemText primary="Sent mail" />
-              </NavLink>
-            </ListItem>
+              </ListItem>
+            </NavLink>
 
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <NavLink to='/Drafts'>
+            <NavLink to='/Drafts'>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <DraftsIcon />
+                </ListItemIcon>
                 <ListItemText primary="Drafts" />
-              </NavLink>
-            </ListItem>
+              </ListItem>
 
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <NavLink to='Starred'>
+            </NavLink>
+            <NavLink to='Starred'>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
                 <ListItemText primary="Starred" />
-              </NavLink>
-            </ListItem>
+              </ListItem>
+            </NavLink>
 
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <ListAltIcon />
-              </ListItemIcon>
-              <NavLink to='Forms'>
+            <NavLink to='Forms'>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <ListAltIcon />
+                </ListItemIcon>
                 <ListItemText primary="Forms" />
-              </NavLink>
-            </ListItem>
+              </ListItem>
+            </NavLink>
 
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <ShowChartIcon />
-              </ListItemIcon>
-              <NavLink to='/Analytics'>
+            <NavLink to='/Analytics'>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <ShowChartIcon />
+                </ListItemIcon>
                 <ListItemText primary="Analytics" />
-              </NavLink>
-            </ListItem>
+              </ListItem>
+            </NavLink>
 
-            <ListItem button>
-              <ListItemIcon>
-                <TodayIcon />
-              </ListItemIcon>
-              <NavLink to='/Calendar'>
+            <NavLink to='/Calendar'>
+              <ListItem button>
+                <ListItemIcon>
+                  <TodayIcon />
+                </ListItemIcon>
                 <ListItemText primary="Calendar" />
-              </NavLink>
-            </ListItem>
-
+              </ListItem>
+            </NavLink>
+            
           </div>
 
         </List>

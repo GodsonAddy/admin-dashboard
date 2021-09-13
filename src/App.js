@@ -10,37 +10,24 @@ import Forms from './SideBarItems/forms';
 import Inbox from './SideBarItems/inbox';
 import Starred from './SideBarItems/starred';
 import Drafts from './SideBarItems/drafts';
-import { createTheme, ThemeProvider } from '@material-ui/core';
+import ProtectedRoute from './protectedRoute.js';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: [
-      'Poppins',
-    ].join(',')
-  },
-  palette: {
-    primary: {
-      main: '#D93B30'
-    }
-  }
-})
+
 
 function App() {
   return (
     <div>
-    <ThemeProvider theme={theme} >
       <Switch>
         <Route  exact path="/" component={Login} />
-        <Route exact path="/Home" component={AdminDashboard} />
-        <Route  exact path="/Inbox" component={Inbox} />
-        <Route exact path="/sentmail" component={SentMail} />
-        <Route exact path="/Starred" component={Starred} />
-        <Route exact path="/Analytics" component={Analytics} />
-        <Route exact path="/Forms" component={Forms} />
-        <Route exact path="/Calendar" component={Calendar} />
-        <Route exact path="/Drafts" component={Drafts} />
+        <ProtectedRoute exact path="/Home" component={AdminDashboard} />
+        <ProtectedRoute  exact path="/Inbox" component={Inbox} />
+        <ProtectedRoute exact path="/sentmail" component={SentMail} />
+        <ProtectedRoute exact path="/Starred" component={Starred} />
+        <ProtectedRoute exact path="/Analytics" component={Analytics} />
+        <ProtectedRoute exact path="/Forms" component={Forms} />
+        <ProtectedRoute exact path="/Calendar" component={Calendar} />
+        <ProtectedRoute exact path="/Drafts" component={Drafts} />
       </Switch>
-      </ThemeProvider>
     </div>
   );
 }

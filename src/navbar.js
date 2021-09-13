@@ -131,6 +131,11 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleLogOut = () => {
+    localStorage.clear();
+    window.location.pathname = "/";
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -144,7 +149,7 @@ export default function NavBar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleLogOut}>Logout</MenuItem>
     </Menu>
   );
 
