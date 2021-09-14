@@ -12,7 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { DrawerContext } from './context/drawer-context';
+import { DrawerContext } from './../context/drawer-context';
 
 
 const drawerWidth = 240;

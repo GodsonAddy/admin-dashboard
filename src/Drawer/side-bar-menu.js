@@ -9,9 +9,9 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import TodayIcon from '@material-ui/icons/Today';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-import logo from './assets/vodafone.png';
+import logo from './../assets/vodafone.png';
 import { NavLink } from 'react-router-dom';
-import './App.css';
+import './../App.css';
 import styled from 'styled-components';
 
 const NavUnlisted = styled.ul`

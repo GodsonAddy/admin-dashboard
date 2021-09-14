@@ -4,7 +4,7 @@ import { Drawer, IconButton, Divider} from '@material-ui/core';
 import clsx from 'clsx';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import SideBarMenu from './side-bar-menu';
-import { DrawerContext } from './context/drawer-context';
+import { DrawerContext } from '../context/drawer-context';
 
 const drawerWidth = 240;
 
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function SideBar() {
+export default function SideBar({width}) {
   const classes = useStyles();
   const {open, setOpen} = useContext(DrawerContext);
 
@@ -70,7 +70,7 @@ export default function SideBar() {
           >
           
           <div className={classes.toolbar}>
-            <IconButton onClick={() => setOpen(prev => !prev)}>
+            <IconButton onClick={() => setOpen(!open)}>
               <ChevronLeftIcon />
             </IconButton>
           </div> 
